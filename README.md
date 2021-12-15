@@ -1,7 +1,7 @@
 # Project 2: Hawk classification
 ## About
 ## Installation
-To install, be sure to clone the repository using `git clone `.
+To install, be sure to clone the repository using `git clone git@github.com:jasemichael/hawk-classification.git`.
 Once cloned, `cd` into the cloned directory and run `python3 -m venv venv`.
 This will create the virtual environment which we will host the pip3 packages in.
 Activate the environment by running `source venv/vin/activate`.
