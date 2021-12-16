@@ -1,11 +1,14 @@
 # Project 2: Hawk classification
 ## About
 ## Installation
+Note: use the `python` command instead of `python3` for windows based systems.
 To install, be sure to clone the repository using `git clone git@github.com:jasemichael/hawk-classification.git`.
 Once cloned, `cd` into the cloned directory and run `python3 -m venv venv`.
 This will create the virtual environment which we will host the pip3 packages in.
 Activate the environment by running `source venv/vin/activate`.
 Once activated, as indicated in the terminal, run `pip3 install -r requirements.txt` to install the required dependencies.
+### Dataset
+The dataset is located at https://hawk-classification.s3.us-west-2.amazonaws.com/dataset.zip.
 ## Run
 There are various ways to run the code, depending on your purpose.
 ### Training

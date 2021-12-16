@@ -1,17 +1,18 @@
 import tensorflow as tf
 import pathlib
 import matplotlib.pyplot as plt
+import os
 
-from utils.generate_dataset import generate_dataset
+from utils.load_dataset.load_dataset import load_dataset
 
-IMG_WIDTH = 150
-IMG_HEIGHT = 150
+IMG_WIDTH = 75
+IMG_HEIGHT = 75
 
 CURRENT_DIR = str(pathlib.Path().resolve())
-DATASET_DIR = CURRENT_DIR + '/dataset/'
+DATASET_DIR = os.path.join(CURRENT_DIR, 'dataset')
 
 # Preprocessing
-x_train, y_train, x_valid, y_valid, x_test, y_test = generate_dataset(DATASET_DIR, IMG_HEIGHT, IMG_WIDTH)
+x_train, y_train, x_valid, y_valid, x_test, y_test = load_dataset(DATASET_DIR, IMG_HEIGHT, IMG_WIDTH)
 assert len(x_train) != len(x_valid) and len(x_valid) != len(x_test)
 
 # Model definition
@@ -27,11 +28,11 @@ model = tf.keras.models.Sequential([
 ])
 
 # Training
-model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=0.01, momentum=0.9),
+model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=0.001, momentum=0.9),
               loss='mean_squared_error',
               metrics=['accuracy'])
 
-history = model.fit(x_train, y_train, validation_data=(x_valid, y_valid), batch_size=32, epochs=10, shuffle=True)
+history = model.fit(x_train, y_train, validation_data=(x_valid, y_valid), batch_size=16, epochs=10, shuffle=True)
 
 # Evaluation
 plt.plot(history.history['accuracy'], label='accuracy')
