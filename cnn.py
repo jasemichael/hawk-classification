@@ -21,28 +21,43 @@ model = tf.keras.models.Sequential([
   tf.keras.layers.MaxPool2D(pool_size=(2, 2)),
   tf.keras.layers.Conv2D(filters=64, kernel_size=3, activation='relu'),
   tf.keras.layers.MaxPool2D(pool_size=(2, 2)),
-  tf.keras.layers.Conv2D(filters=64, kernel_size=3, activation='relu'),
+  tf.keras.layers.Conv2D(filters=128, kernel_size=3, activation='relu'),
+  tf.keras.layers.MaxPool2D(pool_size=(2, 2)),
+  tf.keras.layers.Conv2D(filters=256, kernel_size=3, activation='relu'),
+  tf.keras.layers.MaxPool2D(pool_size=(2, 2)),
+  #tf.keras.layers.Dropout(0.2),
   tf.keras.layers.Flatten(),
+  tf.keras.layers.Dense(128, activation='relu'),
   tf.keras.layers.Dense(64, activation='relu'),
+  tf.keras.layers.Dense(32, activation='relu'),
   tf.keras.layers.Dense(2, activation='softmax')
 ])
 
 # Training
-model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=0.001, momentum=0.9),
-              loss='mean_squared_error',
+model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=0.0001, momentum=0.9),
+              loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-history = model.fit(x_train, y_train, validation_data=(x_valid, y_valid), batch_size=16, epochs=10, shuffle=True)
+history = model.fit(x_train, y_train, validation_data=(x_valid, y_valid), batch_size=4, epochs=20, shuffle=True)
 
 # Evaluation
-plt.plot(history.history['accuracy'], label='accuracy')
-plt.plot(history.history['val_accuracy'], label = 'val_accuracy')
+history = history.history
+plt.plot(history['accuracy'], label='accuracy')
+plt.plot(history['val_accuracy'], label = 'val_accuracy')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
-plt.ylim([0.5, 1])
+plt.title('Accuracy Comparison')
 plt.legend(loc='lower right')
+plt.show()
 
-test_loss, test_acc = model.evaluate(x_test,  y_test, verbose=2)
+plt.plot(history['loss'], label='loss')
+plt.plot(history['val_loss'], label='val_loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.title('Loss Comparison')
+plt.show()
 
+results = model.evaluate(x_test,  y_test, verbose=2)
+print(results)
 model.save('models/model')
 #tf.keras.models.load_model('models/model')
