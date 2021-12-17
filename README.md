@@ -28,7 +28,7 @@ hawk-classification/\
 --------sharp_shinned/\
 ----venv\
 ## Run
-There are various ways to run the code, depending on your purpose.
+There are various ways to run the code, depending on your purpose.\
 Note: GPU-enabled running requires CUDA. See this [page](https://www.tensorflow.org/install/gpu) for installation.
 ### Training
 Note: the dataset is required to run correctly.\
