@@ -16,7 +16,5 @@ def make_prediction(file_path):
     return answer
 
 if __name__ == "__main__":
-    print(make_prediction('/home/jasemichael/Downloads/sharp-shinned.jpg'))
-    print(make_prediction('/home/jasemichael/Downloads/red-tailed.jpg'))
-    print(make_prediction('/home/jasemichael/Downloads/red-tailed2.jpg'))
-    print(make_prediction('/home/jasemichael/Downloads/sharp-shinned2.jpg'))
+    # change accordingly
+    print(make_prediction('/home/jasemichael/Downloads/sharp-shinned3.jpg'))

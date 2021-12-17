@@ -4,3 +4,4 @@ venv
 models
 __pycache__
 dataset.zip
+models.zip

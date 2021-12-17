@@ -7,7 +7,6 @@ from utils.load_dataset.load_dataset import load_dataset
 
 IMG_WIDTH = 75
 IMG_HEIGHT = 75
-
 CURRENT_DIR = str(pathlib.Path().resolve())
 DATASET_DIR = os.path.join(CURRENT_DIR, 'dataset')
 
@@ -40,7 +39,7 @@ model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=0.0001, momentum=0
 
 history = model.fit(x_train, y_train, validation_data=(x_valid, y_valid), batch_size=4, epochs=20, shuffle=True)
 
-# Evaluation
+# Plot and Evaluation
 history = history.history
 plt.plot(history['accuracy'], label='accuracy')
 plt.plot(history['val_accuracy'], label = 'val_accuracy')
@@ -59,5 +58,5 @@ plt.show()
 
 results = model.evaluate(x_test,  y_test, verbose=2)
 print(results)
-model.save('models/model')
-#tf.keras.models.load_model('models/model')
+# uncomment to save model
+#model.save('models/model')
